@@ -40,6 +40,15 @@ ft_wandrNDRelL0L
 
 Check flag.Here is your token : kooda2puivaav1idi4f57q8iq
 =========================================================
+level 03 :
+scp -P 4242 level03@192.168.1.147:~/level03 .
+do => file level03
+result => level03: ELF 32-bit LSB executable
+do => strings level03
+result found => /usr/bin/env echo Exploit me
+
+need to change uid => 3003
+=========================================================
 level 04 :
 check /etc/www/
 
