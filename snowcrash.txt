@@ -245,9 +245,14 @@ printf("You may not access '%s'\n", "token"You may not access 'token'
 )                                                                                                  = 27
 exit(1 <unfinished ...>
 +++ exited (status 1) +++
-
-
-
+test : 
+- mv failed
+- cp (with permissions option)
+- scp
+- ln -> correct
+create link to access token value and change change name because of strstr
+quif5eloekouj29ke0vouxean
+Check flag.Here is your token : 25749xKZ8L7DkSCwJkT9dyv6f
 =========================================================
 level 09 :
 
