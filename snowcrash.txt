@@ -255,6 +255,47 @@ quif5eloekouj29ke0vouxean
 Check flag.Here is your token : 25749xKZ8L7DkSCwJkT9dyv6f
 =========================================================
 level 09 :
+level09@SnowCrash:~$ ls
+level09  token
+level09@SnowCrash:~$ ./level09 
+You need to provied only one arg.
+level09@SnowCrash:~$ ./level09 token 
+tpmhr
+level09@SnowCrash:~$ cat token 
+f4kmm6p|=�p�n��DB�Du{��
+level09@SnowCrash:~$ ltrace ./level09 token 
+__libc_start_main(0x80487ce, 2, 0xbffff7d4, 0x8048aa0, 0x8048b10 <unfinished ...>
+ptrace(0, 0, 1, 0, 0xb7e2fe38)                                               = -1
+puts("You should not reverse this"You should not reverse this
+)                                          = 28
++++ exited (status 1) +++
+
+level09@SnowCrash:~$ ./level09 token lol
+You need to provied only one arg.
+level09@SnowCrash:~$ echo test > test
+-bash: test: Permission denied
+level09@SnowCrash:~$ echo test < test
+-bash: test: No such file or directory
+level09@SnowCrash:~$ echo test > test
+-bash: test: Permission denied
+level09@SnowCrash:~$ echo test > /tmp/test
+level09@SnowCrash:~$ ./level09 /tmp/test
+/uos3ykz|
+
+
+level09@SnowCrash:~$ ./level09 abc
+ace
+
+scp -P 4242 level09@192.168.56.216:~/token .
+
+
+run script : 
+
+original : f4kmm6p|=pnDBDu{
+
+new : f3iji1ju5yuevaus41q1afiuq
+
+Check flag.Here is your token : s5cAJpM8ev6XHw998pRWG728z
 
 =========================================================
 level 12 :
