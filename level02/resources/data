@@ -1,0 +1,23 @@
+level 02 :
+scp -P 4242 level02@192.168.1.147:~/level02.pcap .
+
+
+wireshark : 
+..%..%..&..... ..#..'..$..&..... ..#..'..$.. .....#.....'........... .38400,38400....#.SodaCan:0....'..DISPLAY.SodaCan:0......xterm.........."........!........"..".....b........b....	B.
+..............................1.......!.."......"......!..........."........"..".............	..
+.....................
+Linux 2.6.38-8-generic-pae (::ffff:10.1.1.2) (pts/10)
+
+..wwwbugs login: l.le.ev.ve.el.lX.X
+..
+Password: ft_wandr...NDRel.L0L
+.
+..
+Login incorrect
+wwwbugs login: 
+"
+follow tcp stream
+filter 206bytes
+ft_wandrNDRelL0L
+
+Check flag.Here is your token : kooda2puivaav1idi4f57q8iq
